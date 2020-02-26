@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="com.docsascodeasdocs.markdown.dacad-npm"
+         default="dita2dacad-npm"
+         xmlns:dita="http://dita-ot.sourceforge.net">
+
+    <property name="transtype"
+              value="dacad-npm"/>
+
+    <script language="javascript">
+        project.setProperty('pub.lang', project.getProperty('args.default.language').split('-')[0]);
+    </script>
+
+     <property name="home.dir"
+               location="${args.input}${file.separator}..${file.separator}..${file.separator}..${file.separator}"/>
+
+    <property name="md.ext" value=".md"/>
+    <property name="yml.ext" value=".yml"/>
+
+    <property name="npm.package.dir" 
+              value="${home.dir}${file.separator}docs-source"/>
+    <property name="npm.content.dir"
+              value="${npm.package.dir}${file.separator}content${file.separator}${pub.lang}"/>
+    <property name="npm.package.assets.dir"
+              value="${npm.package.dir}${file.separator}assets${file.separator}doc-assets${file.separator}${pub.lang}${file.separator}images"/>
+    <property name="npm.package.docs.dir"
+              value="${npm.package.content.dir}${file.separator}docs"/>
+
+    <target name="create.npm.package">
+        <copy todir="${npm.package.docs.dir"
+              flatten="true">
+            <fileset dir="${output.dir}${file.separator}topics">
+                <include name="**/*.md"/>
+            </fileset>
+        </copy>
+        <copy todir="${npm.package.content.dir}"
+              file="{output.dir}${file.separator}pages.yml"/>
+        <copy todir="${npm.package.assets.dir}"
+              flatten="true">
+            <fileset dir="${output.dir}${file.separator}assets">
+                <include name="**"/>
+            </fileset>
+        </copy>
+
+    </target>
+
+    <target name="dita2dacad-npm"
+            description="Custom 'GitHub-flavored markdown as NPM package' transform for DaCaD"
+            depends="">
+        
+    </target>
+
+</project>

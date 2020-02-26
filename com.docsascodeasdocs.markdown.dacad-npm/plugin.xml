@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin id="com.docsascodeasdocs.markdown.dacad-npm">
+
+    <transtype name="dacad-npm" 
+               desc="Custom 'GitHub-flavored markdown as NPM package' transform for DaCaD"/>
+    
+    <feature extension="dita.conductor.transtype.check"
+             value="dacad-npm"
+             type="txt"/>
+    <feature extension="dita.conductor.target.relative"
+             value="build_dacad-npm_transtype.xml"
+             type="file"/>
+    
+    <template file="xsl/dita2dacad-npm_template.xsl"/>
+</plugin>
