@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:learning:rng:dacad-learningContent.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:learning:rng:dacad-learningContent.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:sch:dacadDuster.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<learningContent id="content_${id}">
+    <title>${caret}</title>
+    <shortdesc></shortdesc>
+    <learningContentbody> </learningContentbody>
+</learningContent>
