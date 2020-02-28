@@ -3,21 +3,29 @@
 
 text=auto
 
-*.dita        text
-*.ditamap     text
-*.html        text
-*.md          text
-*.properties  text
-*.py          text diff=python
-*.rng         text
-*.sch         text
-*.xml         text
-*.xsl         text
+.gitattributes  text
+.gitignore      text
+*.dita          text
+*.ditamap       text
+*.html          text
+*.md            text
+*.properties    text
+*.py            text diff=python
+*.rng           text
+*.sch           text
+*.xml           text
+*.xsl           text
+*.xspec         text
+
+*.dita     linguist-language=XML
+*.ditamap  linguist-language=XML
+*.rng      linguist-language=XML
+*.sch      linguist-language=XML
+*.xml      linguist-language=XML
+*.xsl      linguist-language=XML
+*.xspec    linguist-language=XML
 
 # Binary files
 # ===========
 
-*.jar  binary
 *.png  binary
-
-.gitattributes text
