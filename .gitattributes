@@ -17,6 +17,14 @@ text=auto
 *.xsl           text
 *.xspec         text
 
+*.dita     linguist-detectable=true
+*.ditamap  linguist-detectable=true
+*.rng      linguist-detectable=true
+*.sch      linguist-detectable=true
+*.xml      linguist-detectable=true
+*.xsl      linguist-detectable=true
+*.xspec    linguist-detectable=true
+
 *.dita     linguist-language=XML
 *.ditamap  linguist-language=XML
 *.rng      linguist-language=XML
