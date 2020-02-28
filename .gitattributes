@@ -19,6 +19,7 @@ text=auto
 
 *.dita     linguist-detectable=true
 *.ditamap  linguist-detectable=true
+*.ditaval  linguist-detectable=true
 *.rng      linguist-detectable=true
 *.sch      linguist-detectable=true
 *.xml      linguist-detectable=true
@@ -27,11 +28,12 @@ text=auto
 
 *.dita     linguist-language=XML
 *.ditamap  linguist-language=XML
+*.ditaval  linguist-language=XML
 *.rng      linguist-language=XML
-*.sch      linguist-language=XML
+*.sch      linguist-language=Scheme
 *.xml      linguist-language=XML
-*.xsl      linguist-language=XML
-*.xspec    linguist-language=XML
+*.xsl      linguist-language=XSLT
+*.xspec    linguist-language=XSLT
 
 # Binary files
 # ===========
