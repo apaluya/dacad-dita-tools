@@ -29,3 +29,7 @@ text=auto
 # ===========
 
 *.png  binary
+
+
+com.docsascodeasdocs.markdown.dacad-npm/*  linguist-documentation=false
+com.docsascodeasdocs.dita.doctypes/*       linguist-documentation=false
