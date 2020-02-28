@@ -1,9 +1,23 @@
 # Source files
 # ============
-*.rng  text diff=XML
-*.xml  text diff=XML
+
+text=auto
+
+*.dita        text
+*.ditamap     text
+*.html        text
+*.md          text
+*.properties  text
+*.py          text diff=python
+*.rng         text
+*.sch         text
+*.xml         text
+*.xsl         text
 
 # Binary files
 # ===========
-*.jar  binary
 
+*.jar  binary
+*.png  binary
+
+.gitattributes text
