@@ -45,7 +45,7 @@
 
     <target name="dita2dacad-npm"
             description="Custom 'GitHub-flavored markdown as NPM package' transform for DaCaD"
-            depends="">
+            depends="dita2markdown-github">
         
     </target>
 

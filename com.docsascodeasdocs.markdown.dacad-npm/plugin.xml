@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin id="com.docsascodeasdocs.markdown.dacad-npm">
+    
+    <require plugin="org.lwdita"/>
 
     <transtype name="dacad-npm" 
                desc="Custom 'GitHub-flavored markdown as NPM package' transform for DaCaD"/>
