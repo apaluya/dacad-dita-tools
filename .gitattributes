@@ -1,0 +1,9 @@
+# Source files
+# ============
+*.rng  text diff=XML
+*.xml  text diff=XML
+
+# Binary files
+# ===========
+*.jar  binary
+
