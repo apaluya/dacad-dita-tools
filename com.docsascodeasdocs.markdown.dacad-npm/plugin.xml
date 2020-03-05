@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="dita-ot/plugin.rnc" type="application/relax-ng-compact-syntax"?>
 <plugin id="com.docsascodeasdocs.markdown.dacad-npm">
     
     <require plugin="org.lwdita"/>
@@ -8,7 +9,7 @@
     
     <feature extension="dita.conductor.transtype.check"
              value="dacad-npm"
-             type="txt"/>
+             type="text"/>
     <feature extension="dita.conductor.target.relative"
              value="build_dacad-npm_transtype.xml"
              type="file"/>
