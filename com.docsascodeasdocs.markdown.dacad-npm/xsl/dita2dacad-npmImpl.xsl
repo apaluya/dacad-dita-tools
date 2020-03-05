@@ -16,7 +16,7 @@
     <xsl:template match="*[contains(@class, ' topic/topic ')]" mode="yaml">
         <xsl:text>---&#xA;</xsl:text>
         <xsl:text>topic_type: "</xsl:text>
-        <xsl:value-of select="normalize-space(*/substring-before(@xtrc, ':'))"/>
+        <xsl:value-of select="substring-before(@xtrc, ':')"/>
         <xsl:text>"&#xA;</xsl:text>
         <xsl:text>id: "</xsl:text>
         <xsl:value-of select="substring-before(tokenize(@xtrf, '/')[last()], '.')"/>
@@ -25,10 +25,10 @@
         <xsl:value-of select="@xml:lang"/>
         <xsl:text>"&#xA;</xsl:text>
         <xsl:text>title: "</xsl:text>
-        <xsl:value-of select="descendant::*[contains(@class, ' topic/title ')]"/>
+        <xsl:value-of select="normalize-space(child::*[contains(@class, ' topic/title ')])"/>
         <xsl:text>"&#xA;</xsl:text>
         <xsl:text>description: "</xsl:text>
-        <xsl:value-of select="descendant::*[contains(@class, ' topic/shortdesc ')]"/>
+        <xsl:value-of select="normalize-space(descendant::*[contains(@class, ' topic/shortdesc ')])"/>
         <xsl:text>"&#xA;</xsl:text>
         <xsl:apply-templates mode="yaml"/>
         <xsl:text>---&#xA;</xsl:text>
@@ -36,7 +36,7 @@
     
     <xsl:template match="*[contains(@class, ' topic/related-links ')]" mode="yaml">
         <xsl:variable name="collType" 
-                      select="*[contains(@class, ' topic/linkpool ')]/*[contains(@class, ' topic/linkpool ')]/@collection-type"/>
+            select="*[contains(@class, ' topic/linkpool ')]/*[contains(@class, ' topic/linkpool ')]/@collection-type"/>
         <xsl:if test="$collType = 'family'">
             <xsl:text>landing_page: "true"&#xA;</xsl:text>
         </xsl:if>
@@ -53,21 +53,21 @@
         <xsl:value-of select="replace($file, '^.*/', '')"/>
         <xsl:text>"&#xA;</xsl:text>
         <xsl:text>    role: "</xsl:text>
-        <xsl:value-of select="@role"/>
+        <xsl:value-of select="normalize-space(@role)"/>
         <xsl:text>"&#xA;</xsl:text>
         <xsl:apply-templates mode="yaml"/>
     </xsl:template>
     
     <xsl:template match="*[contains(@class, ' topic/linktext ')]" mode="yaml">
         <xsl:text>    title: "</xsl:text>
-        <xsl:value-of select="text()"/>
+        <xsl:value-of select="normalize-space(text())"/>
         <xsl:text>"&#xA;</xsl:text>
     </xsl:template>
-
+    
     <xsl:template match="*[contains(@class, ' topic/desc ')]" mode="yaml">
         <xsl:text>    description: "</xsl:text>
-        <xsl:value-of select="text()"/>
+        <xsl:value-of select="normalize-space(text())"/>
         <xsl:text>"&#xA;</xsl:text>
     </xsl:template>
-
+    
 </xsl:stylesheet>
