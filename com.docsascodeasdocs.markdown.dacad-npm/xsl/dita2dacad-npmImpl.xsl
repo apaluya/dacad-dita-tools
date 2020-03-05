@@ -36,7 +36,7 @@
     
     <xsl:template match="*[contains(@class, ' topic/related-links ')]" mode="yaml">
         <xsl:variable name="collType" 
-            select="*[contains(@class, ' topic/linkpool ')]/*[contains(@class, ' topic/linkpool ')]/@collection-type"/>
+                      select="*[contains(@class, ' topic/linkpool ')]/*[contains(@class, ' topic/linkpool ')]/@collection-type"/>
         <xsl:if test="$collType = 'family'">
             <xsl:text>landing_page: "true"&#xA;</xsl:text>
         </xsl:if>
