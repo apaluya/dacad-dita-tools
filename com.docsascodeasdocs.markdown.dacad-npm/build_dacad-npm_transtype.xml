@@ -5,38 +5,42 @@
 
     <property name="transtype"
               value="dacad-npm"/>
+
+    <!-- USER-PROVIDED ARGS: FOR BEST RESULTS, PASS VALS FOR THESE ARGS IN YOUR BUILD SCRIPT -->
+    <property name="default.language" value="${default.language}"/>
+    <property name="output.dir" value="${output.dir}"/>
+    <property name="dita.temp.dir" value="${dita.temp.dir}"/>
+    <property name="args.input" value="${args.input}"/>
     
+    <!-- LOCAL ARGS -->
+    <property name="home.dir" value="${output.dir}${file.separator}..${file.separator}"/>
     <property name="pub.lang" value="${default.language}"/>
-
-     <property name="home.dir"
-               location="${dita.dir}${file.separator}..${file.separator}"/>
-
     <property name="md.ext" value=".md"/>
     <property name="yml.ext" value=".yml"/>
     
-    <property name="output.dir" value="${home.dir}${file.separator}out"/>
-    <property name="dita.temp.dir" value="${home.dir}${file.separator}temp-dacad"/>
+    <!-- COMMON DITA ARGS -->
+    <property name="args.debug" value="yes"/>
     <property name="clean.temp" value="no"/>
 
-    <property name="npm.package.dir" 
+    <property name="dacad.npm.package.dir" 
               value="${home.dir}${file.separator}docs-source"/>
-    <property name="npm.package.content.dir"
-              value="${npm.package.dir}${file.separator}content${file.separator}${pub.lang}"/>
-    <property name="npm.package.assets.dir"
-              value="${npm.package.dir}${file.separator}assets${file.separator}doc-assets${file.separator}${pub.lang}${file.separator}images"/>
-    <property name="npm.package.docs.dir"
-              value="${npm.package.content.dir}${file.separator}docs"/>
+    <property name="dacad.npm.package.content.dir"
+              value="${dacad.npm.package.dir}${file.separator}content${file.separator}${pub.lang}"/>
+    <property name="dacad.npm.package.assets.dir"
+              value="${dacad.npm.package.dir}${file.separator}assets${file.separator}doc-assets${file.separator}${pub.lang}${file.separator}images"/>
+    <property name="dacad.npm.package.docs.dir"
+              value="${dacad.npm.package.content.dir}${file.separator}docs"/>
 
-    <target name="create.npm.package">
-        <copy todir="${npm.package.docs.dir}"
+    <target name="create.dacad.npm.package">
+        <copy todir="${dacad.npm.package.docs.dir}"
               flatten="true">
             <fileset dir="${output.dir}">
                 <include name="**/*.md"/>
             </fileset>
         </copy>
-        <copy todir="${npm.package.content.dir}"
+        <copy todir="${dacad.npm.package.content.dir}"
               file="${output.dir}${file.separator}pages.yml"/>
-        <copy todir="${npm.package.assets.dir}"
+        <copy todir="${dacad.npm.package.assets.dir}"
               flatten="true">
             <fileset dir="${output.dir}${file.separator}assets">
                 <include name="**"/>
@@ -135,6 +139,6 @@
                      dacad-npm.init,
                      dita.inner.topics.dacad-npm.common,
                      dita.map.dacad-npm,
-                     create.npm.package"/>
+                     create.dacad.npm.package"/>
     
 </project>

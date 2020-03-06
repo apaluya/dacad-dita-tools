@@ -42,7 +42,8 @@
     
     <xsl:template match="*[contains(@class, ' map/topicmeta ') 
                            and not(ancestor::*[contains(@class, ' map/relcell ')])
-                           and not(parent::*[contains(@class, ' mapgroup-d/topichead ')])]" mode="yaml-toc">
+                           and not(parent::*[contains(@class, ' mapgroup-d/topichead ')])
+                           and not(parent::*[contains(@class, ' mapgroup-d/keydef ')])]" mode="yaml-toc">
         <xsl:variable name="ancestors" select="count(ancestor::*[contains(@class, ' map/topicref ')]) - 1"/>
         <xsl:call-template name="spaceMaker">
             <xsl:with-param name="levels" select="$ancestors"/>
