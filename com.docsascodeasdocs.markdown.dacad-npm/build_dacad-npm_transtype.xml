@@ -5,16 +5,22 @@
 
     <property name="transtype"
               value="dacad-npm"/>
+    
+    <property name="pub.lang" value="${default.language}"/>
 
      <property name="home.dir"
-               location="${args.input}${file.separator}..${file.separator}..${file.separator}..${file.separator}"/>
+               location="${dita.dir}${file.separator}..${file.separator}"/>
 
     <property name="md.ext" value=".md"/>
     <property name="yml.ext" value=".yml"/>
+    
+    <property name="output.dir" value="${home.dir}${file.separator}out"/>
+    <property name="dita.temp.dir" value="${home.dir}${file.separator}temp-dacad"/>
+    <property name="clean.temp" value="no"/>
 
     <property name="npm.package.dir" 
               value="${home.dir}${file.separator}docs-source"/>
-    <property name="npm.content.dir"
+    <property name="npm.package.content.dir"
               value="${npm.package.dir}${file.separator}content${file.separator}${pub.lang}"/>
     <property name="npm.package.assets.dir"
               value="${npm.package.dir}${file.separator}assets${file.separator}doc-assets${file.separator}${pub.lang}${file.separator}images"/>
@@ -22,23 +28,23 @@
               value="${npm.package.content.dir}${file.separator}docs"/>
 
     <target name="create.npm.package">
-        <copy todir="${npm.package.docs.dir"
+        <copy todir="${npm.package.docs.dir}"
               flatten="true">
-            <fileset dir="${output.dir}${file.separator}topics">
+            <fileset dir="${output.dir}">
                 <include name="**/*.md"/>
             </fileset>
         </copy>
-        <copy todir="${npm.package.content.dir}"
-              file="{output.dir}${file.separator}pages.yml"/>
+        <!--copy todir="${npm.package.content.dir}"
+              file="{dacad.output.dir}${file.separator}pages.yml"/>
         <copy todir="${npm.package.assets.dir}"
               flatten="true">
             <fileset dir="${output.dir}${file.separator}assets">
                 <include name="**"/>
             </fileset>
-        </copy>
+        </copy-->
     </target>
     
-    <target name="dita2dacad-npm.init">
+    <target name="dacad-npm.init">
         <condition property="args.xsl" value="${dita.plugin.com.docsascodeasdocs.markdown.dacad-npm.dir}/xsl/dita2dacad-npm_template.xsl">
             <not><isset property="args.xsl" /></not>
         </condition>
@@ -46,7 +52,6 @@
         <condition property="dita.dacad-npm.reloadstylesheet" value="false">
             <not><isset property="dita.dacad-npm.reloadstylesheet"/></not>
         </condition>
-        <property name="clean.temp" value="no"/>
     </target>
 
     <target name="dita.inner.topics.dacad-npm.common" unless="noTopic" if="inner.transform">
@@ -75,16 +80,18 @@
               <param name="BASEDIR" expression="${basedir}"/>
               <param name="OUTPUTDIR" expression="${output.dir}"/>
               <param name="DBG" expression="${args.debug}" if="args.debug"/>
-              <mapper type="regexp" from="^(${tempdirToinputmapdir.relative.value})(.*?)(\.w+))$$" to="\2${md.ext}"/>
+              <mapper type="regexp" from="^(${tempdirToinputmapdir.relative.value})(.*?)(\.(\w+))$$" to="\2${md.ext}"/>
               <xmlcatalog refid="dita.catalog"/>
         </xslt>
     </target>
-
+    
 
     <target name="dita2dacad-npm"
             description="Custom 'GitHub-flavored markdown as NPM package' transform for DaCaD"
-            depends="dita2dacad-npm.init,
+            depends="build-init,
+                     preprocess,
+                     dacad-npm.init,
                      dita.inner.topics.dacad-npm.common,
-                     dita2markdown_github"/>
+                     create.npm.package"/>
 
 </project>

@@ -4,6 +4,7 @@
     exclude-result-prefixes="xs"
     version="2.0">
     
+    <!-- THIS PLUGIN EXTENDS org.lwdita DITA-TO-MARKDOWN -->
     <xsl:import href="plugin:org.lwdita:xsl/ast2markdown.xsl"/>
     <xsl:import href="plugin:org.lwdita:xsl/task.xsl"/>
     <xsl:import href="plugin:org.lwdita:xsl/ut-d.xsl"/>
@@ -13,7 +14,7 @@
     <xsl:import href="plugin:org.lwdita:xsl/hi-d.xsl"/>
     <xsl:import href="plugin:org.lwdita:xsl/markup-d.xsl"/>
     <xsl:import href="plugin:org.lwdita:xsl/xml-d.xsl"/>
-    <xsl:import href="plugin:org.lwdita:xsl/dita2markdownImpl.xsl"/>
+    <xsl:import href="plugin:org.lwdita:xsl/dita2markdown_github.xsl"/>
     <dita:extension id="dita.xsl.markdown" 
                     behavior="org.dita.dost.platform.ImportXSLAction"
                     xmlns:dita="http://dita-ot.sourceforge.net"/>
@@ -23,25 +24,5 @@
     <dita:extension id="dita.xsl.dacad-npm"
                     behavior="org.dita.dost.platform.ImportXSLAction"
                     xmlns:dita="http://dita-ot.sourceforge.net"/>
-    
-    <xsl:output method="text"
-                encoding="UTF-8"/>
-    <xsl:strip-space elements="*"/>
-    
-    <xsl:template match="text()" mode="yaml"/>
-    
-    <xsl:template match="/">
-        <xsl:variable name="ast" as="node()">
-            <xsl:apply-templates/>
-        </xsl:variable>
-        <xsl:variable name="ast-flat" as="node()">
-            <xsl:apply-templates select="$ast" mode="flatten"/>
-        </xsl:variable>
-        <xsl:variable name="ast-clean" as="node()">
-            <xsl:apply-templates select="$ast-flat" mode="ast-clean"/>
-        </xsl:variable>
-        <xsl:apply-templates mode="yaml"/>
-        <xsl:apply-templates select="$ast-clean" mode="ast"/>
-    </xsl:template>
-    
+
 </xsl:stylesheet>
