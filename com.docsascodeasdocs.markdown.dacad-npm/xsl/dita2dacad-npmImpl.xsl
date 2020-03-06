@@ -15,12 +15,14 @@
 
     <!-- SUPPRESS THE DEFAULT TEXT OUTPUT FOR YAML MODE -->
     <xsl:template match="text()" mode="yaml"/>
+    <xsl:template match="text()" mode="yaml-toc"/>
 
     <xsl:output method="text"
         encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>
 
     <xsl:template match="/">
+        <xsl:apply-templates mode="yaml-toc"/>
         <xsl:variable name="ast" as="node()">
             <xsl:apply-templates/>
         </xsl:variable>

@@ -37,13 +37,13 @@
     
     <xsl:template match="*[contains(@class, ' topic/linktext ')]" mode="yaml">
         <xsl:text>    title: "</xsl:text>
-        <xsl:value-of select="normalize-space(text())"/>
+        <xsl:value-of select="normalize-space(.)"/>
         <xsl:text>"&#xA;</xsl:text>
     </xsl:template>
     
     <xsl:template match="*[contains(@class, ' topic/desc ')]" mode="yaml">
         <xsl:text>    description: "</xsl:text>
-        <xsl:value-of select="normalize-space(text())"/>
+        <xsl:value-of select="normalize-space(.)"/>
         <xsl:text>"&#xA;</xsl:text>
     </xsl:template>
     

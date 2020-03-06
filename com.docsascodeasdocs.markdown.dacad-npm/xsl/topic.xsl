@@ -4,8 +4,6 @@
     exclude-result-prefixes="xs"
     version="2.0">
     
-    <xsl:template match="*" mode="chapterHead"/>
-    
     <!-- APPLY TOPIC METADATA IN YAML FORMAT -->
     <xsl:template match="*[contains(@class, ' topic/topic ')]" mode="yaml">
         <xsl:text>---&#xA;</xsl:text>

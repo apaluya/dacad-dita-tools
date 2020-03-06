@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="file:/usr/local/xspec/src/reporter/format-xspec-report.xsl"?>
+<x:report xmlns:test="http://www.jenitennison.com/xslt/unit-test"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          xmlns:x="http://www.jenitennison.com/xslt/xspec"
+          stylesheet="file:/Users/Paul/dacad/dacad-dita-tools/com.docsascodeasdocs.markdown.dacad-npm/xsl/map.xsl"
+          date="2020-03-05T20:11:19.181-08:00"
+          xspec="file:/Users/Paul/dacad/dacad-dita-tools/com.docsascodeasdocs.markdown.dacad-npm/test/test_map-yaml-toc.xspec">
+   <x:scenario id="scenario1"
+               xspec="file:/Users/Paul/dacad/dacad-dita-tools/com.docsascodeasdocs.markdown.dacad-npm/test/test_map-yaml-toc.xspec">
+      <x:label>When processing the top-level title of a map</x:label>
+      <x:context mode="yaml-toc">
+         <map class="- map/map ">
+            <title class="- topic/title ">Don't show this title!</title>
+         </map>
+      </x:context>
+      <x:result select="()"/>
+      <x:test id="scenario1-expect1" successful="true">
+         <x:label>do nothing.</x:label>
+         <x:expect select="()"/>
+      </x:test>
+   </x:scenario>
+</x:report>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<x:description xmlns:x="http://www.jenitennison.com/xslt/xspec" stylesheet="../xsl/map.xsl">
+    
+    <x:scenario label="When processing the top-level title of a map">
+        <x:context mode="yaml-toc">
+            <map class="- map/map ">
+                <title class="- topic/title ">Don't show this title!</title>
+            </map>
+        </x:context>
+
+        <x:expect label="do nothing." xml:space="preserve"></x:expect>
+    </x:scenario>
+    
+</x:description>
