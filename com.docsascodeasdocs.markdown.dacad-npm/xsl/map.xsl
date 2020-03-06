@@ -4,18 +4,21 @@
     exclude-result-prefixes="xs"
     version="2.0">
     
+    <xsl:template match="text()" mode="yaml-toc"/>
     
+    <xsl:output method="text"
+        encoding="UTF-8"/>
+    <xsl:strip-space elements="*"/>
+    
+    <xsl:template match="/">
+        <xsl:apply-templates mode="yaml-toc"/>
+    </xsl:template>
     
     <!-- <MAP> -->
     <xsl:template match="*[contains(@class, ' map/map ')]" mode="yaml-toc">
         <xsl:apply-templates mode="yaml-toc"/>
     </xsl:template>
-    
-    <xsl:template match="*[contains(@class, ' map/map ')]"/>
-    
-    <xsl:template match="*[contains(@class, ' map/map ')]/@title"/>
-    <xsl:template match="*[contains(@class, ' map/map ')]" mode="toc"/>    
-    <xsl:template match="*[contains(@class, ' map/map ')]" mode="chapterBody"/>
+
 
     <!-- <TITLE> -->
     <xsl:template match="*[contains(@class, ' topic/title ') and parent::*[contains(@class, ' map/map ')]]" mode="yaml-toc"/>

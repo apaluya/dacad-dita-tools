@@ -91,7 +91,7 @@
     <target name="dita.map.dacad-npm.init" 
             unless="noMap">
         <condition property="args.dacad-npm.toc.xsl" 
-                   value="${dita.plugin.com.docsascodeasdocs.markdown.dacad-npm.dir}/xsl/dita2dacad-npm_template.xsl">
+                   value="${dita.plugin.com.docsascodeasdocs.markdown.dacad-npm.dir}/xsl/map.xsl">
             <not><isset property="args.dacad-npm.toc.xsl"/></not>
         </condition>
         <condition property="args.dacad-npm.toc" 

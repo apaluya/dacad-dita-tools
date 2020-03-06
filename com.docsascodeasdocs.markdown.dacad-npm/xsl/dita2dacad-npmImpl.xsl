@@ -7,23 +7,15 @@
     <!-- OVERRIDES -->
     <xsl:include href="topic.xsl"/>
     <xsl:include href="related-links.xsl"/>
-    <xsl:include href="map.xsl"/>
 
-
-    <!-- SUPPRESS THE DEFAULT APPLYING OF @ID AND @CLASS VALS ON OUTPUT MD -->
-    <xsl:template name="ast-attributes"/>
-
-    <!-- SUPPRESS THE DEFAULT TEXT OUTPUT FOR YAML MODE -->
+    <!-- SUPPRESS THE DEFAULT TEXT OUTPUT FOR YAML MODES -->
     <xsl:template match="text()" mode="yaml"/>
-    <xsl:template match="text()" mode="yaml-toc"/>
-    
 
     <xsl:output method="text"
         encoding="UTF-8"/>
     <xsl:strip-space elements="*"/>
 
     <xsl:template match="/">
-        <xsl:apply-templates mode="yaml-toc"/>
         <xsl:variable name="ast" as="node()">
             <xsl:apply-templates/>
         </xsl:variable>
@@ -36,6 +28,5 @@
         <xsl:apply-templates mode="yaml"/>
         <xsl:apply-templates select="$ast-clean" mode="ast"/>
     </xsl:template>
-    
-    
+
 </xsl:stylesheet>
