@@ -19,6 +19,7 @@
         <xsl:apply-templates mode="yaml-toc"/>
     </xsl:template>
 
+    <xsl:template match="*[contains(@class, ' map/map ')]"/>
 
     <!-- <TITLE> -->
     <xsl:template match="*[contains(@class, ' topic/title ') and parent::*[contains(@class, ' map/map ')]]" mode="yaml-toc"/>
@@ -57,6 +58,12 @@
         <xsl:text>  description: "</xsl:text>
         <xsl:apply-templates select="*[contains(@class, ' map/shortdesc ')]" mode="yaml-toc"/>
         <xsl:text>"&#xA;</xsl:text>
+        <xsl:if test="following-sibling::*[contains(@class, ' map/topicref ')]">
+            <xsl:call-template name="spaceMaker">
+                <xsl:with-param name="levels" select="$ancestors"/>
+            </xsl:call-template>
+            <xsl:text>  links:&#xA;</xsl:text>
+        </xsl:if>
     </xsl:template>
     
     <!-- <NAVTITLE> -->
@@ -70,7 +77,7 @@
         <xsl:text>  links:&#xA;</xsl:text> 
     </xsl:template>
     
-    <!-- <TOPICREF> &#xA0; -->
+    <!-- <TOPICREF> -->
     <xsl:template match="*[contains(@class, ' map/topicref ')
                            and not(contains(@class, ' mapgroup-d/topicgroup '))
                            and not(contains(@class, ' mapgroup-d/keydef '))
@@ -118,7 +125,7 @@
             <xsl:when test="$levels gt 1">
                 <xsl:variable name="spaces" select="$levels * 4"/>
                 <xsl:for-each select="1 to $spaces">
-                    <xsl:text>&#xA0;</xsl:text>
+                    <xsl:text>&#x20;</xsl:text>
                 </xsl:for-each>
             </xsl:when>
             <xsl:otherwise>
