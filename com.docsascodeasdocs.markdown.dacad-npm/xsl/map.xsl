@@ -5,10 +5,13 @@
     version="2.0">
     
     
+    
     <!-- <MAP> -->
     <xsl:template match="*[contains(@class, ' map/map ')]" mode="yaml-toc">
         <xsl:apply-templates mode="yaml-toc"/>
     </xsl:template>
+    
+    <xsl:template match="*[contains(@class, ' map/map ')]"/>
     
     <xsl:template match="*[contains(@class, ' map/map ')]/@title"/>
     <xsl:template match="*[contains(@class, ' map/map ')]" mode="toc"/>    
@@ -37,10 +40,17 @@
     <xsl:template match="*[contains(@class, ' map/topicmeta ') 
                            and not(ancestor::*[contains(@class, ' map/relcell ')])
                            and not(parent::*[contains(@class, ' mapgroup-d/topichead ')])]" mode="yaml-toc">
-        <xsl:text>    title: "</xsl:text>
+        <xsl:variable name="ancestors" select="count(ancestor::*[contains(@class, ' map/topicref ')]) - 1"/>
+        <xsl:call-template name="spaceMaker">
+            <xsl:with-param name="levels" select="$ancestors"/>
+        </xsl:call-template>
+        <xsl:text>  title: "</xsl:text>
         <xsl:apply-templates select="*[contains(@class, ' map/linktext ')]" mode="yaml-toc"/>
         <xsl:text>"&#xA;</xsl:text>
-        <xsl:text>    description: "</xsl:text>
+        <xsl:call-template name="spaceMaker">
+            <xsl:with-param name="levels" select="$ancestors"/>
+        </xsl:call-template>
+        <xsl:text>  description: "</xsl:text>
         <xsl:apply-templates select="*[contains(@class, ' map/shortdesc ')]" mode="yaml-toc"/>
         <xsl:text>"&#xA;</xsl:text>
     </xsl:template>
@@ -48,7 +58,7 @@
     <!-- <NAVTITLE> -->
     <xsl:template match="*[contains(@class, ' topic/navtitle ')
                            and parent::*[contains(@class, ' map/topicmeta ')] 
-                           and count(ancestor::*[contains(@class, ' map/topichead ')]) = 1 ]" mode="yaml-toc">
+                           and count(ancestor::*[contains(@class, ' mapgroup-d/topichead ')]) = 1 ]" mode="yaml-toc">
         <xsl:text>&#xA;- title: "</xsl:text>
         <xsl:value-of select="."/>
         <xsl:text>"&#xA;</xsl:text>
@@ -56,14 +66,18 @@
         <xsl:text>  links:&#xA;</xsl:text> 
     </xsl:template>
     
-    <!-- <TOPICREF> -->
+    <!-- <TOPICREF> &#xA0; -->
     <xsl:template match="*[contains(@class, ' map/topicref ')
                            and not(contains(@class, ' mapgroup-d/topicgroup '))
                            and not(contains(@class, ' mapgroup-d/keydef '))
                            and not(contains(@class, ' mapgroup-d/topichead '))]" mode="yaml-toc">
         <xsl:variable name="file" select="replace(@href, '\.dita$', '')"/>
         <xsl:variable name="topic-child" select="child::*[contains(@class, ' map/topicref ')]"/>
-        <xsl:text>    - url: "</xsl:text>
+        <xsl:variable name="ancestors" select="count(ancestor::*[contains(@class, ' map/topicref ')])"/>
+        <xsl:call-template name="spaceMaker">
+            <xsl:with-param name="levels" select="$ancestors"/>
+        </xsl:call-template>
+        <xsl:text>- url: "</xsl:text>
         <xsl:value-of select="replace($file, '^.*/', '')"/>
         <xsl:text>"&#xA;</xsl:text>
         <xsl:choose>
@@ -76,10 +90,10 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-    
+        
     <!-- <LINKTEXT> -->
     <xsl:template match="*[contains(@class, ' map/linktext ')]" mode="yaml-toc">
-        <xsl:apply-templates mode="yaml-toc"/>
+        <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
     
     <!-- <SHORTDESC> -->
@@ -92,5 +106,21 @@
     
     <!-- <RELTABLE> -->
     <xsl:template match="*[contains(@class, ' map/reltable ')]" mode="yaml-toc"/>
+
+
+    <xsl:template name="spaceMaker">
+        <xsl:param name="levels"/>
+        <xsl:choose>
+            <xsl:when test="$levels gt 1">
+                <xsl:variable name="spaces" select="$levels * 4"/>
+                <xsl:for-each select="1 to $spaces">
+                    <xsl:text>&#xA0;</xsl:text>
+                </xsl:for-each>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>    </xsl:text>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
 
 </xsl:stylesheet>

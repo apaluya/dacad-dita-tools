@@ -16,6 +16,7 @@
     <!-- SUPPRESS THE DEFAULT TEXT OUTPUT FOR YAML MODE -->
     <xsl:template match="text()" mode="yaml"/>
     <xsl:template match="text()" mode="yaml-toc"/>
+    
 
     <xsl:output method="text"
         encoding="UTF-8"/>

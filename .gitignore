@@ -2,6 +2,5 @@
 /dita-ot-3*
 *.py[cow]
 /out
-/*temp
+/temp*
 /docs-source
-
