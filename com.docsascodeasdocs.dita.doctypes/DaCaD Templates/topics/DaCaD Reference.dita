@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:rng:dacad-reference.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:rng:dacad-reference.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:sch:dacadDuster.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<reference id="reference_${id}">
+    <title></title>
+    <shortdesc></shortdesc>
+    <refbody> </refbody>
+</reference>

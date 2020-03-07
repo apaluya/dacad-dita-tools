@@ -15,6 +15,9 @@
               uri="rng/bookmapMod.rng"/>
       <system systemId="urn:oasis:names:tc:dita:rng:bookmapMod.rng"
               uri="rng/bookmapMod.rng"/>
+      <!-- CUSTOMIZATIONS -->
+      <system systemId="urn:com:docsascodeasdocs:dita:rng:dacad-bookmap.rng"
+              uri="rng/dacad-bookmap.rng"/>
    </group>
    <group><!-- Public ID (URN) catalog entries -->
       <uri name="urn:oasis:names:tc:dita:rng:bookmap.rng:1.3"
@@ -28,5 +31,8 @@
            uri="rng/bookmapMod.rng"/>
       <uri name="urn:oasis:names:tc:dita:rng:bookmapMod.rng"
            uri="rng/bookmapMod.rng"/>
+      <!-- CUSTOMIZATIONS -->
+      <uri name="urn:com:docsascodeasdocs:dita:rng:dacad-bookmap.rng" 
+           uri="rng/dacad-bookmap.rng"/>
    </group>
 </catalog>

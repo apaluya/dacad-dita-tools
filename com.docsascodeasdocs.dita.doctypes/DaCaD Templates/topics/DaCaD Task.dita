@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:rng:dacad-task.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:rng:dacad-task.rng" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<?xml-model href="urn:com:docsascodeasdocs:dita:sch:dacadDuster.sch" schematypens="http://purl.oclc.org/dsdl/schematron"?>
+<task id="task_${id}">
+    <title></title>
+    <shortdesc></shortdesc>
+    <taskbody>
+        <context>
+            <p></p>
+        </context>
+        <steps>
+            <step>
+                <cmd></cmd>
+            </step>
+        </steps>
+    </taskbody>
+</task>
